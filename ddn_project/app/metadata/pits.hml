@@ -1,0 +1,158 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: pits
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: date
+      type: String
+    - name: driver_number
+      type: Int
+    - name: lap_number
+      type: Int
+    - name: meeting_key
+      type: Int
+    - name: pit_duration
+      type: Double
+    - name: session_key
+      type: Int
+  graphql:
+    typeName: pits
+    inputTypeName: pits_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: pits
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: pits
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - date
+          - driver_number
+          - lap_number
+          - meeting_key
+          - pit_duration
+          - session_key
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: pits_bool_exp
+  operand:
+    object:
+      type: pits
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: date
+          booleanExpressionType: String_bool_exp
+        - fieldName: driver_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: lap_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: pit_duration
+          booleanExpressionType: Double_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: pits_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: pits_agg_exp
+  operand:
+    object:
+      aggregatedType: pits
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: date
+          aggregateExpression: String_agg_exp
+        - fieldName: driver_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: lap_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: pit_duration
+          aggregateExpression: Double_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: pits_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: pits
+  objectType: pits
+  source:
+    dataConnectorName: f1_mongo
+    collection: pits
+  filterExpressionType: pits_bool_exp
+  aggregateExpression: pits_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: date
+      orderByDirections:
+        enableAll: true
+    - fieldName: driver_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: lap_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: pit_duration
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: pits
+    selectUniques:
+      - queryRootField: pits_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: pits_order_by
+    filterInputTypeName: pits_filter_input
+    aggregate:
+      queryRootField: pits_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: pits
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

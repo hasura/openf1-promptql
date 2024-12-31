@@ -1,0 +1,19 @@
+kind: Subgraph
+version: v2
+definition:
+  name: app
+  generator:
+    rootPath: .
+    namingConvention: none
+  includePaths:
+    - metadata
+  envMapping:
+    APP_F1_MONGO_AUTHORIZATION_HEADER:
+      fromEnv: APP_F1_MONGO_AUTHORIZATION_HEADER
+    APP_F1_MONGO_READ_URL:
+      fromEnv: APP_F1_MONGO_READ_URL
+    APP_F1_MONGO_WRITE_URL:
+      fromEnv: APP_F1_MONGO_WRITE_URL
+  connectors:
+    - path: connector/f1_mongo/connector.yaml
+      connectorLinkName: f1_mongo

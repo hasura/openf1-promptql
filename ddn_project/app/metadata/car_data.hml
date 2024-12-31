@@ -1,0 +1,198 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: car_data
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: brake
+      type: Int
+    - name: date
+      type: String
+    - name: driver_number
+      type: Int
+    - name: drs
+      type: Int
+    - name: meeting_key
+      type: Int
+    - name: n_gear
+      type: Int
+    - name: rpm
+      type: Int
+    - name: session_key
+      type: Int
+    - name: speed
+      type: Int
+    - name: throttle
+      type: Int
+  graphql:
+    typeName: car_data
+    inputTypeName: car_data_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: car_data
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: car_data
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - brake
+          - date
+          - driver_number
+          - drs
+          - meeting_key
+          - n_gear
+          - rpm
+          - session_key
+          - speed
+          - throttle
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: car_data_bool_exp
+  operand:
+    object:
+      type: car_data
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: brake
+          booleanExpressionType: Int_bool_exp
+        - fieldName: date
+          booleanExpressionType: String_bool_exp
+        - fieldName: driver_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: drs
+          booleanExpressionType: Int_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: n_gear
+          booleanExpressionType: Int_bool_exp
+        - fieldName: rpm
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: speed
+          booleanExpressionType: Int_bool_exp
+        - fieldName: throttle
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: car_data_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: car_data_agg_exp
+  operand:
+    object:
+      aggregatedType: car_data
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: brake
+          aggregateExpression: Int_agg_exp
+        - fieldName: date
+          aggregateExpression: String_agg_exp
+        - fieldName: driver_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: drs
+          aggregateExpression: Int_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: n_gear
+          aggregateExpression: Int_agg_exp
+        - fieldName: rpm
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: speed
+          aggregateExpression: Int_agg_exp
+        - fieldName: throttle
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: car_data_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: car_data
+  objectType: car_data
+  source:
+    dataConnectorName: f1_mongo
+    collection: car_data
+  filterExpressionType: car_data_bool_exp
+  aggregateExpression: car_data_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: brake
+      orderByDirections:
+        enableAll: true
+    - fieldName: date
+      orderByDirections:
+        enableAll: true
+    - fieldName: driver_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: drs
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: n_gear
+      orderByDirections:
+        enableAll: true
+    - fieldName: rpm
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: speed
+      orderByDirections:
+        enableAll: true
+    - fieldName: throttle
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: car_data
+    selectUniques:
+      - queryRootField: car_data_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: car_data_order_by
+    filterInputTypeName: car_data_filter_input
+    aggregate:
+      queryRootField: car_data_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: car_data
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

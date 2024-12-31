@@ -1,0 +1,228 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: meetings
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: circuit_key
+      type: Int
+    - name: circuit_short_name
+      type: String
+    - name: country_code
+      type: String
+    - name: country_key
+      type: Int
+    - name: country_name
+      type: String
+    - name: date_start
+      type: String
+    - name: gmt_offset
+      type: String
+    - name: location
+      type: String
+    - name: meeting_code
+      type: String
+    - name: meeting_key
+      type: Int
+    - name: meeting_name
+      type: String
+    - name: meeting_official_name
+      type: String
+    - name: year
+      type: Int
+  graphql:
+    typeName: meetings
+    inputTypeName: meetings_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: meetings
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: meetings
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - circuit_key
+          - circuit_short_name
+          - country_code
+          - country_key
+          - country_name
+          - date_start
+          - gmt_offset
+          - location
+          - meeting_code
+          - meeting_key
+          - meeting_name
+          - meeting_official_name
+          - year
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: meetings_bool_exp
+  operand:
+    object:
+      type: meetings
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: circuit_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: circuit_short_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: country_code
+          booleanExpressionType: String_bool_exp
+        - fieldName: country_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: country_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: date_start
+          booleanExpressionType: String_bool_exp
+        - fieldName: gmt_offset
+          booleanExpressionType: String_bool_exp
+        - fieldName: location
+          booleanExpressionType: String_bool_exp
+        - fieldName: meeting_code
+          booleanExpressionType: String_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: meeting_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: meeting_official_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: year
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: meetings_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: meetings_agg_exp
+  operand:
+    object:
+      aggregatedType: meetings
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: circuit_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: circuit_short_name
+          aggregateExpression: String_agg_exp
+        - fieldName: country_code
+          aggregateExpression: String_agg_exp
+        - fieldName: country_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: country_name
+          aggregateExpression: String_agg_exp
+        - fieldName: date_start
+          aggregateExpression: String_agg_exp
+        - fieldName: gmt_offset
+          aggregateExpression: String_agg_exp
+        - fieldName: location
+          aggregateExpression: String_agg_exp
+        - fieldName: meeting_code
+          aggregateExpression: String_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: meeting_name
+          aggregateExpression: String_agg_exp
+        - fieldName: meeting_official_name
+          aggregateExpression: String_agg_exp
+        - fieldName: year
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: meetings_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: meetings
+  objectType: meetings
+  source:
+    dataConnectorName: f1_mongo
+    collection: meetings
+  filterExpressionType: meetings_bool_exp
+  aggregateExpression: meetings_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: circuit_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: circuit_short_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_code
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: date_start
+      orderByDirections:
+        enableAll: true
+    - fieldName: gmt_offset
+      orderByDirections:
+        enableAll: true
+    - fieldName: location
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_code
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_official_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: year
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: meetings
+    selectUniques:
+      - queryRootField: meetings_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: meetings_order_by
+    filterInputTypeName: meetings_filter_input
+    aggregate:
+      queryRootField: meetings_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: meetings
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

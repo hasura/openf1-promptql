@@ -1,0 +1,61 @@
+{
+  "name": "pits",
+  "collections": {
+    "pits": {
+      "type": "pits"
+    }
+  },
+  "objectTypes": {
+    "pits": {
+      "fields": {
+        "_id": {
+          "type": {
+            "scalar": "objectId"
+          }
+        },
+        "date": {
+          "type": {
+            "nullable": {
+              "scalar": "string"
+            }
+          }
+        },
+        "driver_number": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "lap_number": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "meeting_key": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "pit_duration": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "session_key": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        }
+      }
+    }
+  }
+}

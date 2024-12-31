@@ -1,0 +1,14 @@
+services:
+  app_f1_mongo:
+    build:
+      context: .
+      dockerfile: .hasura-connector/Dockerfile.f1_mongo
+    environment:
+      HASURA_SERVICE_TOKEN_SECRET: $APP_F1_MONGO_HASURA_SERVICE_TOKEN_SECRET
+      MONGODB_DATABASE_URI: $APP_F1_MONGO_MONGODB_DATABASE_URI
+      OTEL_EXPORTER_OTLP_ENDPOINT: $APP_F1_MONGO_OTEL_EXPORTER_OTLP_ENDPOINT
+      OTEL_SERVICE_NAME: $APP_F1_MONGO_OTEL_SERVICE_NAME
+    extra_hosts:
+      - local.hasura.dev:host-gateway
+    ports:
+      - 6611:8080

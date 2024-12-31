@@ -1,0 +1,1362 @@
+kind: DataConnectorLink
+version: v1
+definition:
+  name: f1_mongo
+  url:
+    readWriteUrls:
+      read:
+        valueFromEnv: APP_F1_MONGO_READ_URL
+      write:
+        valueFromEnv: APP_F1_MONGO_WRITE_URL
+  headers:
+    Authorization:
+      valueFromEnv: APP_F1_MONGO_AUTHORIZATION_HEADER
+  schema:
+    version: v0.1
+    schema:
+      scalar_types:
+        BinData:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: BinData
+        Bool:
+          representation:
+            type: boolean
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Bool
+        Date:
+          representation:
+            type: timestamp
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: Date
+            min:
+              result_type:
+                type: named
+                name: Date
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Date
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Date
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Date
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Date
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Date
+        DbPointer:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: DbPointer
+        Decimal:
+          representation:
+            type: bigdecimal
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: Decimal
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: Decimal
+            min:
+              result_type:
+                type: named
+                name: Decimal
+            sum:
+              result_type:
+                type: named
+                name: Decimal
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Decimal
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Decimal
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Decimal
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Decimal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Decimal
+        Double:
+          representation:
+            type: float64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: Double
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: Double
+            min:
+              result_type:
+                type: named
+                name: Double
+            sum:
+              result_type:
+                type: named
+                name: Double
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Double
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Double
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Double
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Double
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Double
+        ExtendedJSON:
+          representation:
+            type: json
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: ExtendedJSON
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: ExtendedJSON
+            min:
+              result_type:
+                type: named
+                name: ExtendedJSON
+            sum:
+              result_type:
+                type: named
+                name: ExtendedJSON
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: ExtendedJSON
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: ExtendedJSON
+            _in:
+              type: custom
+              argument_type:
+                type: named
+                name: ExtendedJSON
+            _iregex:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: ExtendedJSON
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: ExtendedJSON
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: ExtendedJSON
+            _regex:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+        Int:
+          representation:
+            type: int32
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: Int
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: Int
+            min:
+              result_type:
+                type: named
+                name: Int
+            sum:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Int
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Int
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Int
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Int
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Int
+        Javascript:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators: {}
+        JavascriptWithScope:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators: {}
+        Long:
+          representation:
+            type: int64
+          aggregate_functions:
+            avg:
+              result_type:
+                type: named
+                name: Long
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: Long
+            min:
+              result_type:
+                type: named
+                name: Long
+            sum:
+              result_type:
+                type: named
+                name: Long
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Long
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Long
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Long
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Long
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Long
+        MaxKey:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: MaxKey
+        MinKey:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: MinKey
+        "Null":
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: "Null"
+        ObjectId:
+          representation:
+            type: string
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: ObjectId
+        Regex:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators: {}
+        String:
+          representation:
+            type: string
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: String
+            min:
+              result_type:
+                type: named
+                name: String
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _iregex:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+            _regex:
+              type: custom
+              argument_type:
+                type: named
+                name: String
+        Symbol:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Symbol
+        Timestamp:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+            max:
+              result_type:
+                type: named
+                name: Timestamp
+            min:
+              result_type:
+                type: named
+                name: Timestamp
+          comparison_operators:
+            _eq:
+              type: equal
+            _gt:
+              type: custom
+              argument_type:
+                type: named
+                name: Timestamp
+            _gte:
+              type: custom
+              argument_type:
+                type: named
+                name: Timestamp
+            _lt:
+              type: custom
+              argument_type:
+                type: named
+                name: Timestamp
+            _lte:
+              type: custom
+              argument_type:
+                type: named
+                name: Timestamp
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Timestamp
+        Undefined:
+          aggregate_functions:
+            count:
+              result_type:
+                type: named
+                name: Int
+          comparison_operators:
+            _eq:
+              type: equal
+            _neq:
+              type: custom
+              argument_type:
+                type: named
+                name: Undefined
+      object_types:
+        car_data:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            brake:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            drs:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            n_gear:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            rpm:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            speed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            throttle:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        drivers:
+          fields:
+            __synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Bool
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            broadcast_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            country_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            first_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            full_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            headshot_url:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            last_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            name_acronym:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            team_colour:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            team_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+        intervals:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            gap_to_leader:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            interval:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        laps:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            date_start:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            duration_sector_1:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            duration_sector_2:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            duration_sector_3:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            i1_speed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            i2_speed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            is_pit_out_lap:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Bool
+            lap_duration:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            lap_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            segments_sector_1:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: nullable
+                    underlying_type:
+                      type: named
+                      name: Int
+            segments_sector_2:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: Int
+            segments_sector_3:
+              type:
+                type: nullable
+                underlying_type:
+                  type: array
+                  element_type:
+                    type: named
+                    name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            st_speed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        meetings:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            circuit_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            circuit_short_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            country_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            country_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            country_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            date_start:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            gmt_offset:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            location:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            meeting_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            meeting_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            meeting_official_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            year:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        pits:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            lap_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            pit_duration:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        positions:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            position:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        sessions:
+          fields:
+            __synced:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Bool
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            circuit_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            circuit_short_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            country_code:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            country_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            country_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            date_end:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            date_start:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            gmt_offset:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            location:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_name:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            session_type:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            year:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        stints:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            compound:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            driver_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            lap_end:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            lap_start:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            stint_number:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            tyre_age_at_start:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+        weather:
+          fields:
+            _id:
+              type:
+                type: named
+                name: ObjectId
+            air_temperature:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            date:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: String
+            humidity:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            meeting_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            pressure:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            rainfall:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            session_key:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            track_temperature:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+            wind_direction:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Int
+            wind_speed:
+              type:
+                type: nullable
+                underlying_type:
+                  type: named
+                  name: Double
+      collections:
+        - name: car_data
+          arguments: {}
+          type: car_data
+          uniqueness_constraints:
+            car_data_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: drivers
+          arguments: {}
+          type: drivers
+          uniqueness_constraints:
+            drivers_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: intervals
+          arguments: {}
+          type: intervals
+          uniqueness_constraints:
+            intervals_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: laps
+          arguments: {}
+          type: laps
+          uniqueness_constraints:
+            laps_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: meetings
+          arguments: {}
+          type: meetings
+          uniqueness_constraints:
+            meetings_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: pits
+          arguments: {}
+          type: pits
+          uniqueness_constraints:
+            pits_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: positions
+          arguments: {}
+          type: positions
+          uniqueness_constraints:
+            positions_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: sessions
+          arguments: {}
+          type: sessions
+          uniqueness_constraints:
+            sessions_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: stints
+          arguments: {}
+          type: stints
+          uniqueness_constraints:
+            stints_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+        - name: weather
+          arguments: {}
+          type: weather
+          uniqueness_constraints:
+            weather_id:
+              unique_columns:
+                - _id
+          foreign_keys: {}
+      functions: []
+      procedures: []
+    capabilities:
+      version: 0.1.6
+      capabilities:
+        query:
+          aggregates: {}
+          variables: {}
+          explain: {}
+          nested_fields:
+            filter_by: {}
+            order_by: {}
+          exists:
+            nested_collections: {}
+        mutation: {}
+        relationships:
+          relation_comparisons: {}

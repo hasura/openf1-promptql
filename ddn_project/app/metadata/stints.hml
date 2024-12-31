@@ -1,0 +1,178 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: stints
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: compound
+      type: String
+    - name: driver_number
+      type: Int
+    - name: lap_end
+      type: Int
+    - name: lap_start
+      type: Int
+    - name: meeting_key
+      type: Int
+    - name: session_key
+      type: Int
+    - name: stint_number
+      type: Int
+    - name: tyre_age_at_start
+      type: Int
+  graphql:
+    typeName: stints
+    inputTypeName: stints_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: stints
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: stints
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - compound
+          - driver_number
+          - lap_end
+          - lap_start
+          - meeting_key
+          - session_key
+          - stint_number
+          - tyre_age_at_start
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: stints_bool_exp
+  operand:
+    object:
+      type: stints
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: compound
+          booleanExpressionType: String_bool_exp
+        - fieldName: driver_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: lap_end
+          booleanExpressionType: Int_bool_exp
+        - fieldName: lap_start
+          booleanExpressionType: Int_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: stint_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: tyre_age_at_start
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: stints_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: stints_agg_exp
+  operand:
+    object:
+      aggregatedType: stints
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: compound
+          aggregateExpression: String_agg_exp
+        - fieldName: driver_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: lap_end
+          aggregateExpression: Int_agg_exp
+        - fieldName: lap_start
+          aggregateExpression: Int_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: stint_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: tyre_age_at_start
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: stints_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: stints
+  objectType: stints
+  source:
+    dataConnectorName: f1_mongo
+    collection: stints
+  filterExpressionType: stints_bool_exp
+  aggregateExpression: stints_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: compound
+      orderByDirections:
+        enableAll: true
+    - fieldName: driver_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: lap_end
+      orderByDirections:
+        enableAll: true
+    - fieldName: lap_start
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: stint_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: tyre_age_at_start
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: stints
+    selectUniques:
+      - queryRootField: stints_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: stints_order_by
+    filterInputTypeName: stints_filter_input
+    aggregate:
+      queryRootField: stints_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: stints
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

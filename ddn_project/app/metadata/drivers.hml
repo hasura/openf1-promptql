@@ -1,0 +1,271 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: drivers
+  fields:
+    - name: _synced
+      type: Bool
+    - name: _id
+      type: ObjectId!
+    - name: broadcast_name
+      type: String
+    - name: country_code
+      type: String
+    - name: driver_number
+      type: Int
+    - name: first_name
+      type: String
+    - name: full_name
+      type: String
+    - name: headshot_url
+      type: String
+    - name: last_name
+      type: String
+    - name: meeting_key
+      type: Int
+    - name: name_acronym
+      type: String
+    - name: session_key
+      type: Int
+    - name: team_colour
+      type: String
+    - name: team_name
+      type: String
+  graphql:
+    typeName: drivers
+    inputTypeName: drivers_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: drivers
+      fieldMapping:
+        _synced:
+          column:
+            name: __synced
+        _id:
+          column:
+            name: _id
+        broadcast_name:
+          column:
+            name: broadcast_name
+        country_code:
+          column:
+            name: country_code
+        driver_number:
+          column:
+            name: driver_number
+        first_name:
+          column:
+            name: first_name
+        full_name:
+          column:
+            name: full_name
+        headshot_url:
+          column:
+            name: headshot_url
+        last_name:
+          column:
+            name: last_name
+        meeting_key:
+          column:
+            name: meeting_key
+        name_acronym:
+          column:
+            name: name_acronym
+        session_key:
+          column:
+            name: session_key
+        team_colour:
+          column:
+            name: team_colour
+        team_name:
+          column:
+            name: team_name
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: drivers
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _synced
+          - _id
+          - broadcast_name
+          - country_code
+          - driver_number
+          - first_name
+          - full_name
+          - headshot_url
+          - last_name
+          - meeting_key
+          - name_acronym
+          - session_key
+          - team_colour
+          - team_name
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: drivers_bool_exp
+  operand:
+    object:
+      type: drivers
+      comparableFields:
+        - fieldName: _synced
+          booleanExpressionType: Bool_bool_exp
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: broadcast_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: country_code
+          booleanExpressionType: String_bool_exp
+        - fieldName: driver_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: first_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: full_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: headshot_url
+          booleanExpressionType: String_bool_exp
+        - fieldName: last_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: name_acronym
+          booleanExpressionType: String_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: team_colour
+          booleanExpressionType: String_bool_exp
+        - fieldName: team_name
+          booleanExpressionType: String_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: drivers_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: drivers_agg_exp
+  operand:
+    object:
+      aggregatedType: drivers
+      aggregatableFields:
+        - fieldName: _synced
+          aggregateExpression: Bool_agg_exp
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: broadcast_name
+          aggregateExpression: String_agg_exp
+        - fieldName: country_code
+          aggregateExpression: String_agg_exp
+        - fieldName: driver_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: first_name
+          aggregateExpression: String_agg_exp
+        - fieldName: full_name
+          aggregateExpression: String_agg_exp
+        - fieldName: headshot_url
+          aggregateExpression: String_agg_exp
+        - fieldName: last_name
+          aggregateExpression: String_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: name_acronym
+          aggregateExpression: String_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: team_colour
+          aggregateExpression: String_agg_exp
+        - fieldName: team_name
+          aggregateExpression: String_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: drivers_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: drivers
+  objectType: drivers
+  source:
+    dataConnectorName: f1_mongo
+    collection: drivers
+  filterExpressionType: drivers_bool_exp
+  aggregateExpression: drivers_agg_exp
+  orderableFields:
+    - fieldName: _synced
+      orderByDirections:
+        enableAll: true
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: broadcast_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_code
+      orderByDirections:
+        enableAll: true
+    - fieldName: driver_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: first_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: full_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: headshot_url
+      orderByDirections:
+        enableAll: true
+    - fieldName: last_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: name_acronym
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: team_colour
+      orderByDirections:
+        enableAll: true
+    - fieldName: team_name
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: drivers
+    selectUniques:
+      - queryRootField: drivers_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: drivers_order_by
+    filterInputTypeName: drivers_filter_input
+    aggregate:
+      queryRootField: drivers_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: drivers
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

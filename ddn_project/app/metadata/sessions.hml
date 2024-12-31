@@ -1,0 +1,297 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: sessions
+  fields:
+    - name: _synced
+      type: Bool
+    - name: _id
+      type: ObjectId!
+    - name: circuit_key
+      type: Int
+    - name: circuit_short_name
+      type: String
+    - name: country_code
+      type: String
+    - name: country_key
+      type: Int
+    - name: country_name
+      type: String
+    - name: date_end
+      type: String
+    - name: date_start
+      type: String
+    - name: gmt_offset
+      type: String
+    - name: location
+      type: String
+    - name: meeting_key
+      type: Int
+    - name: session_key
+      type: Int
+    - name: session_name
+      type: String
+    - name: session_type
+      type: String
+    - name: year
+      type: Int
+  graphql:
+    typeName: sessions
+    inputTypeName: sessions_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: sessions
+      fieldMapping:
+        _synced:
+          column:
+            name: __synced
+        _id:
+          column:
+            name: _id
+        circuit_key:
+          column:
+            name: circuit_key
+        circuit_short_name:
+          column:
+            name: circuit_short_name
+        country_code:
+          column:
+            name: country_code
+        country_key:
+          column:
+            name: country_key
+        country_name:
+          column:
+            name: country_name
+        date_end:
+          column:
+            name: date_end
+        date_start:
+          column:
+            name: date_start
+        gmt_offset:
+          column:
+            name: gmt_offset
+        location:
+          column:
+            name: location
+        meeting_key:
+          column:
+            name: meeting_key
+        session_key:
+          column:
+            name: session_key
+        session_name:
+          column:
+            name: session_name
+        session_type:
+          column:
+            name: session_type
+        year:
+          column:
+            name: year
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: sessions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _synced
+          - _id
+          - circuit_key
+          - circuit_short_name
+          - country_code
+          - country_key
+          - country_name
+          - date_end
+          - date_start
+          - gmt_offset
+          - location
+          - meeting_key
+          - session_key
+          - session_name
+          - session_type
+          - year
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: sessions_bool_exp
+  operand:
+    object:
+      type: sessions
+      comparableFields:
+        - fieldName: _synced
+          booleanExpressionType: Bool_bool_exp
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: circuit_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: circuit_short_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: country_code
+          booleanExpressionType: String_bool_exp
+        - fieldName: country_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: country_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: date_end
+          booleanExpressionType: String_bool_exp
+        - fieldName: date_start
+          booleanExpressionType: String_bool_exp
+        - fieldName: gmt_offset
+          booleanExpressionType: String_bool_exp
+        - fieldName: location
+          booleanExpressionType: String_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_name
+          booleanExpressionType: String_bool_exp
+        - fieldName: session_type
+          booleanExpressionType: String_bool_exp
+        - fieldName: year
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: sessions_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: sessions_agg_exp
+  operand:
+    object:
+      aggregatedType: sessions
+      aggregatableFields:
+        - fieldName: _synced
+          aggregateExpression: Bool_agg_exp
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: circuit_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: circuit_short_name
+          aggregateExpression: String_agg_exp
+        - fieldName: country_code
+          aggregateExpression: String_agg_exp
+        - fieldName: country_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: country_name
+          aggregateExpression: String_agg_exp
+        - fieldName: date_end
+          aggregateExpression: String_agg_exp
+        - fieldName: date_start
+          aggregateExpression: String_agg_exp
+        - fieldName: gmt_offset
+          aggregateExpression: String_agg_exp
+        - fieldName: location
+          aggregateExpression: String_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_name
+          aggregateExpression: String_agg_exp
+        - fieldName: session_type
+          aggregateExpression: String_agg_exp
+        - fieldName: year
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: sessions_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: sessions
+  objectType: sessions
+  source:
+    dataConnectorName: f1_mongo
+    collection: sessions
+  filterExpressionType: sessions_bool_exp
+  aggregateExpression: sessions_agg_exp
+  orderableFields:
+    - fieldName: _synced
+      orderByDirections:
+        enableAll: true
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: circuit_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: circuit_short_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_code
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: country_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: date_end
+      orderByDirections:
+        enableAll: true
+    - fieldName: date_start
+      orderByDirections:
+        enableAll: true
+    - fieldName: gmt_offset
+      orderByDirections:
+        enableAll: true
+    - fieldName: location
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_name
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_type
+      orderByDirections:
+        enableAll: true
+    - fieldName: year
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: sessions
+    selectUniques:
+      - queryRootField: sessions_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: sessions_order_by
+    filterInputTypeName: sessions_filter_input
+    aggregate:
+      queryRootField: sessions_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: sessions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

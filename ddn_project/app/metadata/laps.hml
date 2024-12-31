@@ -1,0 +1,246 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: laps
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: date_start
+      type: String
+    - name: driver_number
+      type: Int
+    - name: duration_sector_1
+      type: Double
+    - name: duration_sector_2
+      type: Double
+    - name: duration_sector_3
+      type: Double
+    - name: i1_speed
+      type: Int
+    - name: i2_speed
+      type: Int
+    - name: is_pit_out_lap
+      type: Bool
+    - name: lap_duration
+      type: Double
+    - name: lap_number
+      type: Int
+    - name: meeting_key
+      type: Int
+    - name: segments_sector_1
+      type: "[Int]"
+    - name: segments_sector_2
+      type: "[Int!]"
+    - name: segments_sector_3
+      type: "[Int!]"
+    - name: session_key
+      type: Int
+    - name: st_speed
+      type: Int
+  graphql:
+    typeName: laps
+    inputTypeName: laps_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: laps
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: laps
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - date_start
+          - driver_number
+          - duration_sector_1
+          - duration_sector_2
+          - duration_sector_3
+          - i1_speed
+          - i2_speed
+          - is_pit_out_lap
+          - lap_duration
+          - lap_number
+          - meeting_key
+          - segments_sector_1
+          - segments_sector_2
+          - segments_sector_3
+          - session_key
+          - st_speed
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: laps_bool_exp
+  operand:
+    object:
+      type: laps
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: date_start
+          booleanExpressionType: String_bool_exp
+        - fieldName: driver_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: duration_sector_1
+          booleanExpressionType: Double_bool_exp
+        - fieldName: duration_sector_2
+          booleanExpressionType: Double_bool_exp
+        - fieldName: duration_sector_3
+          booleanExpressionType: Double_bool_exp
+        - fieldName: i1_speed
+          booleanExpressionType: Int_bool_exp
+        - fieldName: i2_speed
+          booleanExpressionType: Int_bool_exp
+        - fieldName: is_pit_out_lap
+          booleanExpressionType: Bool_bool_exp
+        - fieldName: lap_duration
+          booleanExpressionType: Double_bool_exp
+        - fieldName: lap_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: st_speed
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: laps_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: laps_agg_exp
+  operand:
+    object:
+      aggregatedType: laps
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: date_start
+          aggregateExpression: String_agg_exp
+        - fieldName: driver_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: duration_sector_1
+          aggregateExpression: Double_agg_exp
+        - fieldName: duration_sector_2
+          aggregateExpression: Double_agg_exp
+        - fieldName: duration_sector_3
+          aggregateExpression: Double_agg_exp
+        - fieldName: i1_speed
+          aggregateExpression: Int_agg_exp
+        - fieldName: i2_speed
+          aggregateExpression: Int_agg_exp
+        - fieldName: is_pit_out_lap
+          aggregateExpression: Bool_agg_exp
+        - fieldName: lap_duration
+          aggregateExpression: Double_agg_exp
+        - fieldName: lap_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: st_speed
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: laps_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: laps
+  objectType: laps
+  source:
+    dataConnectorName: f1_mongo
+    collection: laps
+  filterExpressionType: laps_bool_exp
+  aggregateExpression: laps_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: date_start
+      orderByDirections:
+        enableAll: true
+    - fieldName: driver_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: duration_sector_1
+      orderByDirections:
+        enableAll: true
+    - fieldName: duration_sector_2
+      orderByDirections:
+        enableAll: true
+    - fieldName: duration_sector_3
+      orderByDirections:
+        enableAll: true
+    - fieldName: i1_speed
+      orderByDirections:
+        enableAll: true
+    - fieldName: i2_speed
+      orderByDirections:
+        enableAll: true
+    - fieldName: is_pit_out_lap
+      orderByDirections:
+        enableAll: true
+    - fieldName: lap_duration
+      orderByDirections:
+        enableAll: true
+    - fieldName: lap_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: segments_sector_1
+      orderByDirections:
+        enableAll: true
+    - fieldName: segments_sector_2
+      orderByDirections:
+        enableAll: true
+    - fieldName: segments_sector_3
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: st_speed
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: laps
+    selectUniques:
+      - queryRootField: laps_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: laps_order_by
+    filterInputTypeName: laps_filter_input
+    aggregate:
+      queryRootField: laps_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: laps
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

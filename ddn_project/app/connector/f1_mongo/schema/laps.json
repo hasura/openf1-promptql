@@ -1,0 +1,139 @@
+{
+  "name": "laps",
+  "collections": {
+    "laps": {
+      "type": "laps"
+    }
+  },
+  "objectTypes": {
+    "laps": {
+      "fields": {
+        "_id": {
+          "type": {
+            "scalar": "objectId"
+          }
+        },
+        "date_start": {
+          "type": {
+            "nullable": {
+              "scalar": "string"
+            }
+          }
+        },
+        "driver_number": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "duration_sector_1": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "duration_sector_2": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "duration_sector_3": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "i1_speed": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "i2_speed": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "is_pit_out_lap": {
+          "type": {
+            "nullable": {
+              "scalar": "bool"
+            }
+          }
+        },
+        "lap_duration": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "lap_number": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "meeting_key": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "segments_sector_1": {
+          "type": {
+            "nullable": {
+              "arrayOf": {
+                "nullable": {
+                  "scalar": "int"
+                }
+              }
+            }
+          }
+        },
+        "segments_sector_2": {
+          "type": {
+            "nullable": {
+              "arrayOf": {
+                "scalar": "int"
+              }
+            }
+          }
+        },
+        "segments_sector_3": {
+          "type": {
+            "nullable": {
+              "arrayOf": {
+                "scalar": "int"
+              }
+            }
+          }
+        },
+        "session_key": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "st_speed": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        }
+      }
+    }
+  }
+}

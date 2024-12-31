@@ -1,0 +1,61 @@
+{
+  "name": "intervals",
+  "collections": {
+    "intervals": {
+      "type": "intervals"
+    }
+  },
+  "objectTypes": {
+    "intervals": {
+      "fields": {
+        "_id": {
+          "type": {
+            "scalar": "objectId"
+          }
+        },
+        "date": {
+          "type": {
+            "nullable": {
+              "scalar": "string"
+            }
+          }
+        },
+        "driver_number": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "gap_to_leader": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "interval": {
+          "type": {
+            "nullable": {
+              "scalar": "double"
+            }
+          }
+        },
+        "meeting_key": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        },
+        "session_key": {
+          "type": {
+            "nullable": {
+              "scalar": "int"
+            }
+          }
+        }
+      }
+    }
+  }
+}

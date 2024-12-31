@@ -1,0 +1,198 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: weather
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: air_temperature
+      type: Double
+    - name: date
+      type: String
+    - name: humidity
+      type: Double
+    - name: meeting_key
+      type: Int
+    - name: pressure
+      type: Double
+    - name: rainfall
+      type: Int
+    - name: session_key
+      type: Int
+    - name: track_temperature
+      type: Double
+    - name: wind_direction
+      type: Int
+    - name: wind_speed
+      type: Double
+  graphql:
+    typeName: weather
+    inputTypeName: weather_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: weather
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: weather
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - air_temperature
+          - date
+          - humidity
+          - meeting_key
+          - pressure
+          - rainfall
+          - session_key
+          - track_temperature
+          - wind_direction
+          - wind_speed
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: weather_bool_exp
+  operand:
+    object:
+      type: weather
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: air_temperature
+          booleanExpressionType: Double_bool_exp
+        - fieldName: date
+          booleanExpressionType: String_bool_exp
+        - fieldName: humidity
+          booleanExpressionType: Double_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: pressure
+          booleanExpressionType: Double_bool_exp
+        - fieldName: rainfall
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: track_temperature
+          booleanExpressionType: Double_bool_exp
+        - fieldName: wind_direction
+          booleanExpressionType: Int_bool_exp
+        - fieldName: wind_speed
+          booleanExpressionType: Double_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: weather_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: weather_agg_exp
+  operand:
+    object:
+      aggregatedType: weather
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: air_temperature
+          aggregateExpression: Double_agg_exp
+        - fieldName: date
+          aggregateExpression: String_agg_exp
+        - fieldName: humidity
+          aggregateExpression: Double_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: pressure
+          aggregateExpression: Double_agg_exp
+        - fieldName: rainfall
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: track_temperature
+          aggregateExpression: Double_agg_exp
+        - fieldName: wind_direction
+          aggregateExpression: Int_agg_exp
+        - fieldName: wind_speed
+          aggregateExpression: Double_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: weather_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: weather
+  objectType: weather
+  source:
+    dataConnectorName: f1_mongo
+    collection: weather
+  filterExpressionType: weather_bool_exp
+  aggregateExpression: weather_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: air_temperature
+      orderByDirections:
+        enableAll: true
+    - fieldName: date
+      orderByDirections:
+        enableAll: true
+    - fieldName: humidity
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: pressure
+      orderByDirections:
+        enableAll: true
+    - fieldName: rainfall
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: track_temperature
+      orderByDirections:
+        enableAll: true
+    - fieldName: wind_direction
+      orderByDirections:
+        enableAll: true
+    - fieldName: wind_speed
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: weather
+    selectUniques:
+      - queryRootField: weather_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: weather_order_by
+    filterInputTypeName: weather_filter_input
+    aggregate:
+      queryRootField: weather_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: weather
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

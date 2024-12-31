@@ -1,0 +1,148 @@
+---
+kind: ObjectType
+version: v1
+definition:
+  name: positions
+  fields:
+    - name: _id
+      type: ObjectId!
+    - name: date
+      type: String
+    - name: driver_number
+      type: Int
+    - name: meeting_key
+      type: Int
+    - name: position
+      type: Int
+    - name: session_key
+      type: Int
+  graphql:
+    typeName: positions
+    inputTypeName: positions_input
+  dataConnectorTypeMapping:
+    - dataConnectorName: f1_mongo
+      dataConnectorObjectType: positions
+
+---
+kind: TypePermissions
+version: v1
+definition:
+  typeName: positions
+  permissions:
+    - role: admin
+      output:
+        allowedFields:
+          - _id
+          - date
+          - driver_number
+          - meeting_key
+          - position
+          - session_key
+
+---
+kind: BooleanExpressionType
+version: v1
+definition:
+  name: positions_bool_exp
+  operand:
+    object:
+      type: positions
+      comparableFields:
+        - fieldName: _id
+          booleanExpressionType: ObjectId_bool_exp
+        - fieldName: date
+          booleanExpressionType: String_bool_exp
+        - fieldName: driver_number
+          booleanExpressionType: Int_bool_exp
+        - fieldName: meeting_key
+          booleanExpressionType: Int_bool_exp
+        - fieldName: position
+          booleanExpressionType: Int_bool_exp
+        - fieldName: session_key
+          booleanExpressionType: Int_bool_exp
+      comparableRelationships: []
+  logicalOperators:
+    enable: true
+  isNull:
+    enable: true
+  graphql:
+    typeName: positions_bool_exp
+
+---
+kind: AggregateExpression
+version: v1
+definition:
+  name: positions_agg_exp
+  operand:
+    object:
+      aggregatedType: positions
+      aggregatableFields:
+        - fieldName: _id
+          aggregateExpression: ObjectId_agg_exp
+        - fieldName: date
+          aggregateExpression: String_agg_exp
+        - fieldName: driver_number
+          aggregateExpression: Int_agg_exp
+        - fieldName: meeting_key
+          aggregateExpression: Int_agg_exp
+        - fieldName: position
+          aggregateExpression: Int_agg_exp
+        - fieldName: session_key
+          aggregateExpression: Int_agg_exp
+  count:
+    enable: true
+  graphql:
+    selectTypeName: positions_agg_exp
+
+---
+kind: Model
+version: v1
+definition:
+  name: positions
+  objectType: positions
+  source:
+    dataConnectorName: f1_mongo
+    collection: positions
+  filterExpressionType: positions_bool_exp
+  aggregateExpression: positions_agg_exp
+  orderableFields:
+    - fieldName: _id
+      orderByDirections:
+        enableAll: true
+    - fieldName: date
+      orderByDirections:
+        enableAll: true
+    - fieldName: driver_number
+      orderByDirections:
+        enableAll: true
+    - fieldName: meeting_key
+      orderByDirections:
+        enableAll: true
+    - fieldName: position
+      orderByDirections:
+        enableAll: true
+    - fieldName: session_key
+      orderByDirections:
+        enableAll: true
+  graphql:
+    selectMany:
+      queryRootField: positions
+    selectUniques:
+      - queryRootField: positions_by__id
+        uniqueIdentifier:
+          - _id
+    orderByExpressionType: positions_order_by
+    filterInputTypeName: positions_filter_input
+    aggregate:
+      queryRootField: positions_aggregate
+
+---
+kind: ModelPermissions
+version: v1
+definition:
+  modelName: positions
+  permissions:
+    - role: admin
+      select:
+        filter: null
+

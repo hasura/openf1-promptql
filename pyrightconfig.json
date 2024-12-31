@@ -1,0 +1,5 @@
+{
+    "exclude": ["**/build", "**/typings", "**/.venv", ".venv"],
+    "strict": [],
+    "typeCheckingMode": "basic"
+}
