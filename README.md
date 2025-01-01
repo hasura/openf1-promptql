@@ -11,7 +11,7 @@ You need to have Poetry installed: https://python-poetry.org/docs/#installing-wi
 ### Ingesting 2024 F1 data
 
 ```bash
-cd openf1
+cd openf1_dump
 poetry install
 MONGO_URI=<mongo db url> poetry run python season.py 2024
 ```
