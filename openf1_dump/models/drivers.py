@@ -33,10 +33,11 @@ def ingest_drivers(session_key: int):
 
         print(f"Ingesting driver {driver_number} for session {session_key}")
 
-        ingest_car_data(session_key, driver_number)
-        ingest_intervals(session_key, driver_number)
+        # Avoid ingesting very large data for now
+        # ingest_car_data(session_key, driver_number)
+        # ingest_intervals(session_key, driver_number)
         ingest_laps(session_key, driver_number)
-        ingest_locations(session_key, driver_number)
+        # ingest_locations(session_key, driver_number)
         ingest_pits(session_key, driver_number)
         ingest_positions(session_key, driver_number)
         ingest_stints(session_key, driver_number)
